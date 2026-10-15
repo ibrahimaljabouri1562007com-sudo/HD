@@ -1,9 +1,10 @@
 # Holistic Decisions — Coming Soon
 
 Holding page for **[holisticdecisions.ca](https://www.holisticdecisions.ca)** — *Think Forward*.
+Static `index.html`, served by GitHub Pages (custom domain in `CNAME`).
 
-A single self-contained `index.html` (no build step). Theme is taken from the HD business card:
-deep teal `#0F4A55`, aqua `#7CCBE0` / `#4FB8D6`, cream `#F6E7CC`, peach `#F7D9AE`;
-Montserrat + Quicksand.
-
-To publish: serve `index.html` from any static host (GitHub Pages, Cloudflare Pages, GoDaddy).
+## Brand (from the HD Brand Book 2025)
+- **Colors:** teal `#0F8E8B` (C83 M25 Y48 K3) · beige `#FFD289` (C0 M18 Y53 K0)
+- **Type:** 29LT Bukra (Latin) · GE Dinar One (Arabic) — web uses *Readex Pro* as the free stand-in
+- **Logo:** `hd-logo.svg` (full color, vectorised from the Brand Book) · `hd-mark.svg` (mark only, favicon)
+- **Motifs:** corner chevron stripes · beige `›` heading marker · rising teal/beige band · `» THINK FORWARD`
