@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Holistic Decisions — Coming Soon</title>
+<meta name="description" content="Holistic Decisions — tailored simulation solutions. Our new website is coming soon. Think Forward.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0F4A55">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230F4A55'/%3E%3Crect x='14' y='18' width='16' height='64' fill='%237CCBE0'/%3E%3Cpath d='M30 42h22V30l20 20-20 20V58H30z' fill='%237CCBE0'/%3E%3Cpath d='M44 18h14l-8 16h-6zM44 66h6l8 16H44z' fill='%23F7D9AE'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Brand tokens (read off the HD business card) ───────────── */
+  :root {
+    --teal-950: #0B3A43;   /* deepest edge of the card face  */
+    --teal-900: #0F4A55;   /* card face — primary background  */
+    --teal-700: #17707C;   /* card back wave                  */
+    --aqua:     #7CCBE0;   /* "H" + arrow in the logo         */
+    --aqua-2:   #4FB8D6;   /* outer "D" ring                  */
+    --cream:    #F6E7CC;   /* card back + URL strip           */
+    --peach:    #F7D9AE;   /* the "D" stem in the logo        */
+    --ink:      #23363B;   /* text on cream                   */
+    --text-dim: rgba(246, 231, 204, .7);
+    --line:     rgba(124, 203, 224, .24);
+
+    --f-brand: "Montserrat", system-ui, sans-serif;
+    --f-body:  "Quicksand", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    background:
+      radial-gradient(70% 60% at 50% 42%, #17606C 0%, transparent 70%),
+      linear-gradient(170deg, var(--teal-900) 0%, var(--teal-950) 100%);
+    background-color: var(--teal-900);
+    color: var(--cream);
+    font-family: var(--f-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── Stage ──────────────────────────────────────────────────── */
+  .stage {
+    position: relative;
+    flex: 1;
+    display: grid;
+    place-items: center;
+    padding: clamp(32px, 7vh, 72px) 16px;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .center { display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+  /* Forward waves — the logo's "D" rings, radiating outward */
+  .waves {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(1200px, 190vw);
+    aspect-ratio: 1;
+    transform: translate(-46%, -50%);
+    z-index: -1;
+    pointer-events: none;
+  }
+  .waves path { fill: none; transform-box: fill-box; transform-origin: left center; }
+  .waves .w { stroke: var(--aqua); stroke-width: 3; opacity: 0; animation: wave 7.5s cubic-bezier(.3,.6,.4,1) infinite; }
+  .waves .w:nth-child(2) { animation-delay: 1.5s; }
+  .waves .w:nth-child(3) { animation-delay: 3s; }
+  .waves .w:nth-child(4) { animation-delay: 4.5s; }
+  .waves .w:nth-child(5) { animation-delay: 6s; }
+  @keyframes wave {
+    0%   { transform: scale(.35); opacity: 0; }
+    15%  { opacity: .22; }
+    100% { transform: scale(1);   opacity: 0; }
+  }
+
+  /* The mark — hero visual */
+  .mark { width: clamp(132px, 22vw, 190px); height: auto; filter: drop-shadow(0 18px 40px rgba(0, 0, 0, .25)); }
+  .mark .arrow { animation: nudge 3.2s ease-in-out infinite; }
+  @keyframes nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+
+  .wordmark {
+    margin-top: 26px;
+    font-family: var(--f-brand);
+    font-weight: 700;
+    font-size: clamp(17px, 2.6vw, 24px);
+    letter-spacing: .24em;
+    margin-right: -.24em;           /* optically re-centre tracked caps */
+    color: #F4F7F8;
+  }
+  .tagline {
+    margin-top: 10px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: .34em; margin-right: -.34em;
+    text-transform: uppercase;
+    color: var(--aqua);
+  }
+  .tagline::before, .tagline::after { content: ""; width: 26px; height: 1px; background: currentColor; opacity: .7; }
+
+  /* Message — two short lines only */
+  h1 {
+    margin-top: clamp(40px, 7vh, 64px);
+    font-family: var(--f-brand);
+    font-weight: 600;
+    font-size: clamp(28px, 4.6vw, 46px);
+    line-height: 1.12;
+    letter-spacing: -.015em;
+    color: #FBF4E8;
+  }
+  h1 em { font-style: normal; color: var(--peach); }
+
+  .status {
+    margin-top: 16px;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 600; color: var(--text-dim);
+  }
+  .dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--peach); }
+  .dot::after {
+    content: ""; position: absolute; inset: 0; border-radius: 50%;
+    background: var(--peach); animation: ping 2.2s ease-out infinite;
+  }
+  @keyframes ping { to { transform: scale(3); opacity: 0; } }
+
+  /* Contact — icons, not paragraphs */
+  .actions { margin-top: 34px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    height: 50px;
+    padding: 0 22px;
+    border-radius: 14px;
+    font: 700 15px/1 var(--f-body);
+    text-decoration: none;
+    transition: transform .2s ease, background-color .2s ease, border-color .2s ease;
+  }
+  .btn svg { width: 18px; height: 18px; flex: none; }
+  .btn-primary { background: var(--cream); color: var(--ink); }
+  .btn-primary:hover { background: #FFF3DD; transform: translateY(-1px); }
+  .btn-primary .go { transition: transform .25s ease; }
+  .btn-primary:hover .go { transform: translateX(4px); }
+  .btn-icon { color: var(--cream); border: 1px solid var(--line); padding: 0 16px; }
+  .btn-icon b { font-size: 12px; letter-spacing: .1em; color: var(--aqua); }
+  .btn-icon:hover { border-color: rgba(124, 203, 224, .6); background: rgba(124, 203, 224, .07); transform: translateY(-1px); }
+  .btn:focus-visible { outline: 2px solid var(--aqua); outline-offset: 3px; }
+
+  /* ── Cream strip — the card's URL band ──────────────────────── */
+  .strip {
+    background: var(--cream);
+    color: var(--ink);
+    padding: 14px 16px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 22px;
+    font-size: 12.5px; font-weight: 600;
+  }
+  .strip .url { font-family: var(--f-brand); letter-spacing: .2em; color: var(--teal-700); }
+  .strip .meta { color: rgba(35, 54, 59, .7); }
+
+  /* ── Entrance ───────────────────────────────────────────────── */
+  .rise { opacity: 0; transform: translateY(14px); animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
+  .d1 { animation-delay: .05s } .d2 { animation-delay: .2s } .d3 { animation-delay: .35s }
+  .d4 { animation-delay: .5s }  .d5 { animation-delay: .65s }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  @media (max-width: 480px) {
+    .btn-label { display: none; }               /* phone: icon + code only */
+    .btn-primary .btn-label-short { display: inline; }
+    .actions { gap: 10px; }
+  }
+  .btn-label-short { display: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .rise { opacity: 1; transform: none; }
+    .waves .w { opacity: .12; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+  <main class="stage">
+
+    <!-- Forward waves, radiating from the mark -->
+    <svg class="waves" viewBox="0 0 400 400" aria-hidden="true">
+      <path class="w" d="M200 20 A180 180 0 0 1 200 380"/>
+      <path class="w" d="M200 20 A180 180 0 0 1 200 380"/>
+      <path class="w" d="M200 20 A180 180 0 0 1 200 380"/>
+      <path class="w" d="M200 20 A180 180 0 0 1 200 380"/>
+      <path class="w" d="M200 20 A180 180 0 0 1 200 380"/>
+    </svg>
+
+    <div class="center">
+      <!-- HD mark, redrawn from the business card -->
+      <svg class="mark rise d1" viewBox="0 0 132 100" role="img" aria-label="Holistic Decisions logo">
+        <rect x="0" y="0" width="26" height="100" fill="#7CCBE0"/>
+        <path fill="#FFFFFF" transform="translate(4.5 5) scale(.82)"
+          d="M10 0l1.5 3.5 2-1-.5 4.5 3-2.5.5 2 3.5-.5-1.5 3.5 1 1-5 4 .5 2-4.4-.7.2 4.2h-1.6l.2-4.2L5 16.5l.5-2-5-4 1-1L0 6l3.5.5.5-2 3 2.5-.5-4.5 2 1z"/>
+        <path fill="#F7D9AE" d="M44 0h38L62 32H44z M44 68h18l20 32H44z"/>
+        <path class="arrow" fill="#7CCBE0" d="M26 38h26V22l28 28-28 28V62H26z"/>
+        <path fill="none" stroke="#7CCBE0" stroke-width="11" d="M80 5.5 A40 44.5 0 0 1 80 94.5"/>
+        <path fill="none" stroke="#4FB8D6" stroke-width="9" d="M98 4.5 A30 45.5 0 0 1 98 95.5"/>
+      </svg>
+
+      <p class="wordmark rise d2">HOLISTIC DECISIONS</p>
+      <p class="tagline rise d2">Think Forward</p>
+
+      <h1 class="rise d3">Clarity is <em>taking shape.</em></h1>
+      <p class="status rise d4"><span class="dot" aria-hidden="true"></span>New website coming soon</p>
+
+      <div class="actions rise d5">
+        <a class="btn btn-primary" href="mailto:hamzea@holisticdecisions.ca">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <span class="btn-label">Get in touch</span><span class="btn-label-short">Email</span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+        <a class="btn btn-icon" href="tel:+13067375110" aria-label="Call Canada office: +1 306 737 5110" title="+1 (306) 737-5110">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          <b>CA</b>
+        </a>
+        <a class="btn btn-icon" href="tel:+9647864881488" aria-label="Call Iraq office: +964 786 488 1488" title="+964 (78) 6488 1488">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          <b>IQ</b>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="strip">
+    <span class="url">WWW.HOLISTICDECISIONS.CA</span>
+    <span class="meta">Brampton, Ontario, Canada · © <span id="yr">2026</span></span>
+  </footer>
+
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
