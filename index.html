@@ -6,24 +6,25 @@
 <title>Holistic Decisions — Coming Soon</title>
 <meta name="description" content="Holistic Decisions — tailored simulation solutions. Our new website is coming soon. Think Forward.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#0F8E8B">
+<meta name="theme-color" content="#0B5654">
 <link rel="icon" type="image/svg+xml" href="hd-mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Readex Pro: closest free match to the brand face "29LT Bukra" (geometric, Latin + Arabic) -->
+<!-- Readex Pro: closest free match to the brand face "29LT Bukra" -->
 <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  /* ── Brand tokens (HD Brand Book 2025, "Color Pallette") ─────── */
+  /* ── Brand tokens (HD Brand Book 2025) ──────────────────────── */
   :root {
-    --teal:      #0F8E8B;   /* main color 01 — C83 M25 Y48 K3        */
-    --teal-ink:  #0B6F6C;   /* teal darkened for small text (AA)      */
-    --teal-deep: #0A6462;   /* footer band                            */
-    --beige:     #FFD289;   /* main color 02 — C0 M18 Y53 K0          */
-    --beige-2:   #FFE3B5;   /* logo's lower beige                     */
-    --mist:      #ECF4F3;   /* the brand book's corner chevrons       */
-    --ink:       #46585A;   /* body text                              */
-    --bg:        #FFFFFF;
-    --line:      rgba(15, 142, 139, .28);
+    --teal:      #0F8E8B;   /* brand main color 01                 */
+    --teal-800:  #0B5654;   /* brand teal, deepened for the canvas */
+    --teal-950:  #073D3C;   /* canvas edge                         */
+    --mint:      #8FD3CF;   /* light brand teal — waves, accents   */
+    --beige:     #FFD289;   /* brand main color 02                 */
+    --cream:     #FBEFD9;   /* footer strip                        */
+    --ink:       #173D3C;   /* text on cream                       */
+    --text:      #F7F3EA;
+    --text-dim:  rgba(247, 243, 234, .74);
+    --line:      rgba(143, 211, 207, .3);
 
     --f: "Readex Pro", system-ui, sans-serif;
   }
@@ -34,8 +35,11 @@
     min-height: 100svh;
     display: flex;
     flex-direction: column;
-    background: var(--bg);
-    color: var(--ink);
+    background:
+      radial-gradient(70% 60% at 50% 42%, #0F7472 0%, transparent 70%),
+      linear-gradient(170deg, var(--teal-800) 0%, var(--teal-950) 100%);
+    background-color: var(--teal-800);
+    color: var(--text);
     font-family: var(--f);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -47,99 +51,103 @@
     flex: 1;
     display: grid;
     place-items: center;
-    padding: clamp(40px, 8vh, 80px) 16px clamp(28px, 5vh, 48px);
-    overflow: hidden;
+    padding: clamp(32px, 7vh, 72px) 16px;
     isolation: isolate;
+    overflow: hidden;
   }
   .center { display: flex; flex-direction: column; align-items: center; text-align: center; }
 
-  /* Signature corner chevrons — the "think forward" arrow from every Brand Book page */
-  .chevrons {
+  /* Forward waves — the logo's "D" arcs, radiating outward */
+  .waves {
     position: absolute;
-    top: 0; left: 0;
-    width: clamp(220px, 34vw, 460px);
-    height: auto;
+    left: 50%;
+    top: 50%;
+    width: min(1200px, 190vw);
+    aspect-ratio: 1;
+    transform: translate(-46%, -50%);
     z-index: -1;
     pointer-events: none;
   }
-  .chevrons path { fill: none; stroke: var(--mist); stroke-width: 34; stroke-linejoin: round; }
-  .chevrons.br { top: auto; left: auto; right: 0; bottom: 0; transform: rotate(180deg); width: clamp(160px, 22vw, 300px); }
+  .waves path { fill: none; transform-box: fill-box; transform-origin: left center; }
+  .waves .w { stroke: var(--mint); stroke-width: 3; opacity: 0; animation: wave 7.5s cubic-bezier(.3,.6,.4,1) infinite; }
+  .waves .w:nth-child(2) { animation-delay: 1.5s; }
+  .waves .w:nth-child(3) { animation-delay: 3s; }
+  .waves .w:nth-child(4) { animation-delay: 4.5s; }
+  .waves .w:nth-child(5) { animation-delay: 6s; }
+  @keyframes wave {
+    0%   { transform: scale(.35); opacity: 0; }
+    15%  { opacity: .2; }
+    100% { transform: scale(1);   opacity: 0; }
+  }
 
-  /* Logo — official artwork, vectorised from the Brand Book */
-  .logo { width: clamp(150px, 22vw, 200px); height: auto; display: block; }
+  /* Official logo (vectorised from the Brand Book), on-teal colorway */
+  .logo { width: clamp(150px, 21vw, 196px); height: auto; display: block; filter: drop-shadow(0 18px 40px rgba(0, 0, 0, .22)); }
 
-  /* Headline — Brand Book heading style: beige chevron + light/bold teal */
+  /* Message — two short lines only */
   h1 {
     margin-top: clamp(36px, 6vh, 56px);
-    display: inline-flex;
-    align-items: center;
-    gap: clamp(10px, 1.6vw, 16px);
     font-weight: 300;
-    font-size: clamp(27px, 4.4vw, 44px);
-    line-height: 1.15;
-    letter-spacing: -.01em;
-    color: var(--teal);
+    font-size: clamp(28px, 4.6vw, 46px);
+    line-height: 1.12;
+    letter-spacing: -.015em;
+    color: #FFFFFF;
   }
-  h1 b { font-weight: 600; }
-  .chev { width: .55em; height: auto; flex: none; fill: var(--beige); }
+  h1 em { font-style: normal; font-weight: 500; color: var(--beige); }
 
   .status {
-    margin-top: 14px;
+    margin-top: 16px;
     display: inline-flex; align-items: center; gap: 10px;
-    font-size: 15px; font-weight: 400; color: var(--ink);
+    font-size: 15px; font-weight: 400; color: var(--text-dim);
   }
   .dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--beige); }
   .dot::after {
     content: ""; position: absolute; inset: 0; border-radius: 50%;
-    background: var(--beige); animation: ping 2.4s ease-out infinite;
+    background: var(--beige); animation: ping 2.2s ease-out infinite;
   }
   @keyframes ping { to { transform: scale(3); opacity: 0; } }
 
-  /* Contact */
-  .actions { margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  /* Contact — icons, not paragraphs */
+  .actions { margin-top: 34px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    height: 48px;
+    height: 50px;
     padding: 0 22px;
-    border-radius: 12px;
+    border-radius: 14px;
     font: 500 15px/1 var(--f);
     text-decoration: none;
     transition: transform .2s ease, background-color .2s ease, border-color .2s ease;
   }
   .btn svg { width: 18px; height: 18px; flex: none; }
-  .btn-primary { background: var(--teal-ink); color: #fff; }
-  .btn-primary:hover { background: var(--teal); transform: translateY(-1px); }
-  .btn-primary .go { color: var(--beige); transition: transform .25s ease; }
+  .btn-primary { background: var(--beige); color: var(--ink); }
+  .btn-primary:hover { background: #FFDDA3; transform: translateY(-1px); }
+  .btn-primary .go { transition: transform .25s ease; }
   .btn-primary:hover .go { transform: translateX(4px); }
-  .btn-icon { color: var(--teal-ink); border: 1.5px solid var(--line); padding: 0 16px; }
-  .btn-icon b { font-size: 12px; font-weight: 600; letter-spacing: .1em; }
-  .btn-icon:hover { border-color: var(--teal); background: rgba(15, 142, 139, .05); transform: translateY(-1px); }
-  .btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+  .btn-icon { color: var(--text); border: 1px solid var(--line); padding: 0 16px; }
+  .btn-icon b { font-size: 12px; font-weight: 600; letter-spacing: .1em; color: var(--mint); }
+  .btn-icon:hover { border-color: rgba(143, 211, 207, .65); background: rgba(143, 211, 207, .07); transform: translateY(-1px); }
+  .btn:focus-visible { outline: 2px solid var(--beige); outline-offset: 3px; }
 
-  /* ── Footer — the stationery's rising "growth" band ─────────── */
-  .band { display: block; width: 100%; height: clamp(44px, 7vw, 84px); }
+  /* ── Cream strip — the card's URL band ──────────────────────── */
   .strip {
-    background: var(--teal-deep);
-    color: #fff;
-    padding: 4px 16px 16px;
-    display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 26px;
+    background: var(--cream);
+    color: var(--ink);
+    padding: 14px 16px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 22px;
     font-size: 12.5px; font-weight: 400;
   }
-  .strip .url { letter-spacing: .22em; font-weight: 500; }
-  .strip .tf { display: inline-flex; align-items: center; gap: 8px; letter-spacing: .18em; font-weight: 500; }
-  .strip .tf svg { width: 16px; height: 12px; fill: var(--beige); }
-  .strip .meta { color: rgba(255, 255, 255, .72); }
+  .strip .url { letter-spacing: .2em; font-weight: 500; color: var(--teal-800); }
+  .strip .meta { color: rgba(23, 61, 60, .72); }
 
   .btn-label-short { display: none; }
   @media (max-width: 480px) {
     .btn-label { display: none; }
     .btn-label-short { display: inline; }
     .actions { gap: 10px; }
-    .strip .meta { flex-basis: 100%; text-align: center; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
+    .waves .w { opacity: .12; transform: none; }
   }
 </style>
 </head>
@@ -147,22 +155,19 @@
 
   <main class="stage">
 
-    <svg class="chevrons" viewBox="0 0 460 560" aria-hidden="true">
-      <path d="M150 -30 L330 140 Q362 172 330 205 L-30 520"/>
-      <path d="M232 -30 L400 128 Q446 172 400 217 L-30 610"/>
-    </svg>
-    <svg class="chevrons br" viewBox="0 0 460 560" aria-hidden="true">
-      <path d="M150 -30 L330 140 Q362 172 330 205 L-30 520"/>
-      <path d="M232 -30 L400 128 Q446 172 400 217 L-30 610"/>
+    <!-- Forward waves, radiating from the mark -->
+    <svg class="waves" viewBox="0 0 400 400" aria-hidden="true">
+      <path class="w" d="M200 20 A180 180 0 0 1 200 380"/>
+      <path class="w" d="M200 20 A180 180 0 0 1 200 380"/>
+      <path class="w" d="M200 20 A180 180 0 0 1 200 380"/>
+      <path class="w" d="M200 20 A180 180 0 0 1 200 380"/>
+      <path class="w" d="M200 20 A180 180 0 0 1 200 380"/>
     </svg>
 
     <div class="center">
-      <img class="logo" src="hd-logo.svg" width="492" height="596" alt="Holistic Decisions — Think Forward">
+      <img class="logo" src="hd-logo-on-teal.svg" width="492" height="596" alt="Holistic Decisions — Think Forward">
 
-      <h1 class="rise d2">
-        <svg class="chev" viewBox="0 0 40 64" aria-hidden="true"><path d="M0 0h16l24 32-24 32H0l24-32z"/></svg>
-        <span>Clarity is <b>taking shape.</b></span>
-      </h1>
+      <h1>Clarity is <em>taking shape.</em></h1>
       <p class="status"><span class="dot" aria-hidden="true"></span>New website coming soon</p>
 
       <div class="actions">
@@ -184,17 +189,9 @@
 
   </main>
 
-  <footer>
-    <!-- Rising band: beige stripe over teal, the Brand Book stationery motif -->
-    <svg class="band" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
-      <path fill="#FFD289" d="M0 76 L640 46 L720 70 L1440 0 V20 L720 90 L640 66 L0 96 Z"/>
-      <path fill="#0A6462" d="M0 96 L640 66 L720 90 L1440 20 V100 H0 Z"/>
-    </svg>
-    <div class="strip">
-      <span class="url">WWW.HOLISTICDECISIONS.CA</span>
-      <span class="tf"><svg viewBox="0 0 32 24" aria-hidden="true"><path d="M0 0h7l9 12-9 12H0l9-12zM14 0h7l9 12-9 12h-7l9-12z"/></svg>THINK FORWARD</span>
-      <span class="meta">Brampton, Ontario, Canada · © <span id="yr">2026</span></span>
-    </div>
+  <footer class="strip">
+    <span class="url">WWW.HOLISTICDECISIONS.CA</span>
+    <span class="meta">Brampton, Ontario, Canada · © <span id="yr">2026</span></span>
   </footer>
 
   <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
