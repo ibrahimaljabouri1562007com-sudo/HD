@@ -83,36 +83,30 @@
   /* Official logo (vectorised from the Brand Book), on-teal colorway */
   .logo { width: clamp(150px, 21vw, 196px); height: auto; display: block; filter: drop-shadow(0 18px 40px rgba(0, 0, 0, .22)); }
 
-  /* Message — two short lines only */
+  /* Message — one line only, led by the pulsing beige dot */
   h1 {
     margin-top: clamp(36px, 6vh, 56px);
+    display: inline-flex; align-items: center; gap: clamp(12px, 1.6vw, 18px);
     font-weight: 300;
-    font-size: clamp(28px, 4.6vw, 46px);
-    line-height: 1.12;
-    letter-spacing: -.015em;
+    font-size: clamp(24px, 3.8vw, 38px);
+    line-height: 1.15;
+    letter-spacing: -.01em;
     color: #FFFFFF;
   }
-  h1 em { font-style: normal; font-weight: 500; color: var(--beige); }
-
-  .status {
-    margin-top: 16px;
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 15px; font-weight: 400; color: var(--text-dim);
-  }
-  .dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--beige); }
+  .dot { position: relative; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--beige); }
   .dot::after {
     content: ""; position: absolute; inset: 0; border-radius: 50%;
     background: var(--beige); animation: ping 2.2s ease-out infinite;
   }
   @keyframes ping { to { transform: scale(3); opacity: 0; } }
 
-  /* Contact — icons, not paragraphs */
-  .actions { margin-top: 34px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  /* Contact — one email button */
+  .actions { margin-top: clamp(26px, 4vh, 36px); display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 10px;
     height: 50px;
-    padding: 0 22px;
-    border-radius: 14px;
+    padding: 0 24px;
+    border-radius: 999px;
     font: 500 15px/1 var(--f);
     text-decoration: none;
     transition: transform .2s ease, background-color .2s ease, border-color .2s ease;
@@ -120,11 +114,6 @@
   .btn svg { width: 18px; height: 18px; flex: none; }
   .btn-primary { background: var(--beige); color: var(--ink); }
   .btn-primary:hover { background: #FFDDA3; transform: translateY(-1px); }
-  .btn-primary .go { transition: transform .25s ease; }
-  .btn-primary:hover .go { transform: translateX(4px); }
-  .btn-icon { color: var(--text); border: 1px solid var(--line); padding: 0 16px; }
-  .btn-icon b { font-size: 12px; font-weight: 600; letter-spacing: .1em; color: var(--mint); }
-  .btn-icon:hover { border-color: rgba(143, 211, 207, .65); background: rgba(143, 211, 207, .07); transform: translateY(-1px); }
   .btn:focus-visible { outline: 2px solid var(--beige); outline-offset: 3px; }
 
   /* ── Cream strip — the card's URL band ──────────────────────── */
@@ -137,13 +126,6 @@
   }
   .strip .url { letter-spacing: .2em; font-weight: 500; color: var(--teal-800); }
   .strip .meta { color: rgba(23, 61, 60, .72); }
-
-  .btn-label-short { display: none; }
-  @media (max-width: 480px) {
-    .btn-label { display: none; }
-    .btn-label-short { display: inline; }
-    .actions { gap: 10px; }
-  }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -167,22 +149,12 @@
     <div class="center">
       <img class="logo" src="hd-logo-on-teal.svg" width="492" height="596" alt="Holistic Decisions — Think Forward">
 
-      <h1>Clarity is <em>taking shape.</em></h1>
-      <p class="status"><span class="dot" aria-hidden="true"></span>New website coming soon</p>
+      <h1><span class="dot" aria-hidden="true"></span>New website coming soon</h1>
 
       <div class="actions">
-        <a class="btn btn-primary" href="mailto:hamzea@holisticdecisions.ca">
+        <a class="btn btn-primary" href="mailto:hamzea@holisticdecisions.ca" aria-label="Email Holistic Decisions: hamzea@holisticdecisions.ca">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-          <span class="btn-label">Get in touch</span><span class="btn-label-short">Email</span>
-          <span class="go" aria-hidden="true">→</span>
-        </a>
-        <a class="btn btn-icon" href="tel:+13067375110" aria-label="Call Canada office: +1 306 737 5110" title="+1 (306) 737-5110">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
-          <b>CA</b>
-        </a>
-        <a class="btn btn-icon" href="tel:+9647864881488" aria-label="Call Iraq office: +964 786 488 1488" title="+964 (78) 6488 1488">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
-          <b>IQ</b>
+          hamzea@holisticdecisions.ca
         </a>
       </div>
     </div>
